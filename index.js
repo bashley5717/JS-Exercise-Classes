@@ -80,11 +80,29 @@ class Airplane {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- class Car {
-   constructor(props){
-     this.model = props.
-   }
+class Car {
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0;
+    this.odometer = 0;
   }
+  fill(gallons) {
+    this.tank += gallons;
+  }
+  drive(distance) {
+    const driveableMiles = this.tank * this.milesPerGallon;
+    if (distance <= driveableMiles) {
+      this.odometer += distance;
+      this.tank -= (distance / this.milesPerGallon);
+    }
+    else {
+      this.odometer += driveableMiles;
+      this.tank = 0;
+      return ` I ran out of fuel at ${this.odometer} miles!`
+    }
+  }
+}
   
   /*
     TASK 3
@@ -117,10 +135,7 @@ class Airplane {
           + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
   */
  class Instructor extends Lambdasian{
-   constructor(props) {
-     super(propb);
-     this.specialty = props.b
-   }
+  
 
  }
   /*
@@ -139,11 +154,6 @@ class Airplane {
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
  class Student extends Lambdasian {
-     constructor(prop){
-       super(prop);
-       this.previousBackground = prop.previousBackground;
-       this.className = p
-     }
  }
   
   /*
@@ -187,3 +197,4 @@ export default{
     Student,
     ProjectManager
 }
+
